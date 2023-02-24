@@ -26,10 +26,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Find your Account SID and Auth Token at twilio.com/console
 # and set the environment variables. See http://twil.io/secure
-account_sid = 'AC324de45173c604d64cde71b20fd9a833'
-auth_token = 'b8a363b5df293b6f9dbe8f85758efc88'
+account_sid = ''
+auth_token = ''
 
-stripe.api_key = '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'
+stripe.api_key =  ''
 
 
 def home(request):
