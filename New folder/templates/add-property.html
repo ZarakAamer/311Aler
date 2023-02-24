@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Best Pricing Start -->
+<br><br>
+
+
+<div class="container text-center">
+  <br><br>
+
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Add Property</li>
+    </ol>
+  </nav>
+  <br><br>
+  <div>
+    <div class="container text-center mt-3">
+
+
+
+      <style>
+        .batn {
+          background-color: #8f1bdc;
+          padding: 2px 20px;
+          border-radius: 5px;
+          border: 5px solid #8f1bdc;
+        }
+
+        .first {
+          display: flex;
+          flex-direction: column;
+          min-width: 100%;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+
+        }
+
+
+
+        input {
+          text-align: center;
+          font-size: medium;
+          padding: 10px;
+          margin: 10px;
+          width: 100%;
+          border: 1px solid grey;
+          border-radius: 5px;
+        }
+
+        .form-select {
+          height: 45px;
+          margin: 10px;
+          width: 100%;
+          border: 1px solid grey;
+          text-align: center;
+          font-size: medium;
+
+        }
+      </style>
+
+
+      <div class="row">
+        <form action="{% url 'addproperty' %}" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Property Information</h1>
+            </div>
+            <div class="col-md-12">
+              <p>Enter the basic information for this property.</p>
+            </div>
+            <br>
+            <div class="col-md-6">
+
+              <select class="form-select form-select-lg mb-3" name="borough" id="borough" required>
+                <option selected>Select a Borough * </option>
+                <option value="Manhattan">Manhattan</option>
+                <option value="Bronx">Bronx</option>
+                <option value="Brooklyn">Brooklyn</option>
+                <option value="Queens">Queens</option>
+                <option value="Staten Island">Staten Island</option>
+              </select>
+
+            </div>
+
+
+
+            <div class="col-md-6">
+              <input name="house_number" type="text" placeholder="House Number *" required>
+            </div>
+
+            <div class="col-md-6">
+              <input name="street_name" type="text" placeholder="Street Name *" required>
+            </div>
+
+            <div class="col-md-6">
+              <input name="state" type="text" placeholder="State">
+            </div>
+
+            <div class="col-md-6">
+              <input name="zip" type="text" placeholder="ZIP Code">
+            </div>
+
+            <div class="col-md-6">
+              <input name="property_name" type="text" placeholder="Property Name (optional)">
+            </div>
+
+          </div>
+
+
+
+          <hr>
+          <br<br>
+            <div class="row">
+              <div class="col-md-12">
+                <h1>DOB Information</h1>
+              </div>
+              <div class="col-md-12">
+                <p>Enter the information to connect to DOB complaints system.</p>
+              </div>
+
+              <div class="col-md-6">
+                <input name="house" type="text" placeholder="House Number">
+              </div>
+
+              <div class="col-md-6">
+                <input name="street" type="text" placeholder="Street Name">
+              </div>
+
+              <div class="col-md-6">
+                <input name="zip_code" type="text" placeholder="ZIP Code">
+              </div>
+
+              <div class="col-md-6">
+                <input name="block" type="text" placeholder="Block">
+              </div>
+
+              <div class="col-md-6">
+                <input name="lott" type="text" placeholder="Lot">
+              </div>
+
+
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input name="bin_number" type="text" placeholder="BIN *" required>
+                  </div>
+                  <div class="col-md-6">
+                    <p>
+                      don't have bin number?
+                      <br> <a href="{% url 'property_search_page' %}" style="color: #8f1bdc;">click here to find it now
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <hr>
+            <br<br>
+
+              <div class="row text-center align-items-center">
+                <div class="col-md-12">
+                  <h1>Contact Information</h1>
+                </div>
+                <div class="col-md-12">
+                  <p>Want to receive alerts on more devices ?. You can now add upto 3 additional contacts. your primary
+                    contact is the one you are registered with.</p>
+                </div>
+              </div>
+              <div class="row text-center" style="padding-left: 18%;">
+
+
+                <div class="col-md-3 col-sm-3">
+                  <input type="text" name="fname" placeholder="First Name" id="">
+                  <input type="text" name="lname" placeholder="Last Name" id="">
+                  <input type="email" name="email" placeholder="Email" id="">
+                  <input type="tel" name="phone" placeholder="Phone" id="">
+                </div>
+
+
+                <div class="col-md-3 col-sm-3">
+                  <input type="text" name="fname1" placeholder="First Name" id="">
+                  <input type="text" name="lname1" placeholder="Last Name" id="">
+                  <input type="email" name="email1" placeholder="Email" id="">
+                  <input type="tel" name="phone1" placeholder="Phone" id="">
+                </div>
+
+
+                <div class="col-md-3 col-sm-3">
+                  <input type="text" name="fname2" placeholder="First Name" id="">
+                  <input type="text" name="lnam2e" placeholder="Last Name" id="">
+                  <input type="email" name="email2" placeholder="Email" id="">
+                  <input type="tel" name="phone2" placeholder="Phone" id="">
+                </div>
+
+              </div>
+              <hr>
+              <div class="col-md-12">
+                <button type="submit" class="batn">
+                  <h1
+                    style="border-radius: 5px; padding: 10px 10px 5px 10px; font-size: medium; color: white; background-color: #8f1bdc;">
+                    Add Property</h1>
+                </button>
+              </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

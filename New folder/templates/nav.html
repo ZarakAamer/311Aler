@@ -1,0 +1,81 @@
+{% load static %}
+<style>
+    .the_logo {
+        margin-top: 10px;
+        width: 160px;
+        height: 65px;
+        padding-bottom: 4px;
+    }
+
+    @media (max-width: 990px) {
+        .the_logo {
+            margin-top: 5px;
+
+            width: 170px;
+            height: 70px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .the_logo {
+            margin-top: 0px;
+
+            width: 140px;
+            height: 60px;
+            padding-bottom: 2px;
+
+        }
+    }
+</style>
+<header>
+    <!-- Header Start -->
+    <div class="header-area header-transparrent">
+        <div class="main-header header-sticky">
+            <div class="container" style="min-width: 80%;">
+                <div class="row" style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="{% url 'home' %}"><img class="the_logo" src="{% static 'assets/311.png' %}"
+                                    alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10">
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="{% url 'home' %}"> Home</a></li>
+
+                                    {% if request.user.is_authenticated %}
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+
+
+                                    <li><a href="{% url 'logout' %}"
+                                            style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 10px 20px;">Logout</a>
+                                    </li>
+                                    {% else %}
+
+                                    <li><a href="{% url 'price' %}">Pricing</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    <li><a style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 10px 20px;"
+                                            href="{% url 'register' %}">Sign
+                                            Up</a></li>
+                                    {% endif %}
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>

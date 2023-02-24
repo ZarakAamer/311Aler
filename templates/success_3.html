@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<br>
+<br>
+
+
+
+
+<div style="padding-top: 60px; height: 100%;" class="available-app-area mt-50">
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class=" alert alert-info">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% endif %}
+    <div class="container text-center">
+        <h4 style="text-align: center; font-weight: bold; margin-top: 0%; padding-top: 0%;" class="display-4">Your
+            Payment Was Successfull</h4>
+        <p>You can now Login</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'login' %}" class="btn  card-btn1">Login</a>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

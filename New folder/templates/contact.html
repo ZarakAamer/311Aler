@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    input {
+        padding: 15px;
+        width: 100%;
+    }
+
+    textarea {
+        padding: 10px;
+        border: none;
+        border-bottom: 2px solid grey;
+    }
+
+
+    @media (min-width: 768px) and (max-width: 991px) {
+
+
+        input {
+            font-size: medium;
+            padding: 8px;
+            width: 100%;
+        }
+
+    }
+
+    @media (min-width: 300px) and (max-width: 767px) {
+
+        input {
+            font-size: medium;
+            padding: 8px;
+            width: 100%;
+        }
+
+    }
+</style>
+
+<!-- ================ contact section start ================= -->
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <div class="section-tittle text-center mb-80 mt-3">
+        <h2>Contact Us​</h2>
+    </div>
+    <br>
+    <br><br>
+
+    <form class="form-contact contact_form" action="{% url 'contact' %}" method="post" id="contactForm"
+        novalidate="novalidate">
+
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <input class="" name="name" id="name" type="text" placeholder="Enter your name">
+
+            </div>
+            <div class="col-lg-6">
+
+                <input class="" name="email" id="email" type="email" placeholder="Email">
+
+            </div>
+            <div class="col-lg-12">
+
+                <input name="subject" id="subject" type="text" placeholder="Enter Subject">
+
+            </div>
+            <div class="col-lg-12">
+
+                <textarea class=" w-100" name="message" id="message" cols="30" rows="9"
+                    placeholder="Enter Message"></textarea>
+
+            </div>
+
+            <div class="col-lg-12 mt-3 text-center">
+                <button type="submit"
+                    style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 10px 40px; font-size: medium; color: white; background-color: #8f1bdc;">SEND</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<!-- ================ contact section end ================= -->
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center" style="color: #2b044d; min-width: 100%;">
+    <br><br><br><br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Complaints</li>
+        </ol>
+    </nav>
+
+    <br>
+    <br><br><br><br>
+    <h1 style="text-align:center;">Complaints</h1>
+    <br><br><br><br>
+
+
+    <div class="row" style=" height: max-content;">
+
+
+        <div class="table-responsive">
+            <table style=" color: #8f1bdc;" class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Complaint Number</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Inspection Date</th>
+                        <th scope="col">Deposition</th>
+                        <th scope="col">Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comp in complaints %}
+                    <tr>
+                        <td><a style="color: #2b044d; text-decoration: underline;" href="{{complaint_link}}">
+                                {{comp.complaint_number }}</a></td>
+                        <td>{{ comp.complaint_adress }}</td>
+                        <td>{{ comp.complaint_date }}</td>
+                        <td>{{ comp.complaint_category }}</td>
+                        <td>{{ comp.complaint_inspection_date }}</td>
+                        <td>{{ comp.complaint_deposition }}</td>
+                        <td>{{ comp.complaint_status }}</td>
+
+
+                    </tr>
+                    <br>
+                    <tr">
+
+                        <td colspan="7" style="color: grey;">{{comp.complaint_details}}</td>
+
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <br>
+    <br><br>
+
+</div>
+
+{% endblock %}

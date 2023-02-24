@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br>
+<br>
+<style>
+  .text-primary{
+    color: #2b044d !important;
+  }
+.btn-primary:hover{
+background-color: #8f1bdc !important;
+}
+  .progress-bar{
+    background-color: #8f1bdc;
+    color: #8f1bdc;
+  }
+</style>
+<section >
+  <div class="container py-5">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+
+
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
+
+  
+              {% if messages %}
+
+            {% for message in messages %}
+            <div class=" alert alert-info">
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-6">
+                 <form action="{% url 'update_profile_info' %}" method="post">
+                 {% csrf_token %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">First Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <input class="text-muted mb-0" type="text" name="first_name" placeholder="{{ user.first_name }}" id="">
+                            </div>
+                            </div>
+                            <hr>
+                             <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Last Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <input class="text-muted mb-0" type="text" name="last_name" placeholder="{{ user.last_name }}" id="">
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <input class="text-muted mb-0" type="text" name="email" placeholder="{{ user.email }}" id="">
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <input class="text-muted mb-0" type="text" name="phone" placeholder="{{ user.phone }}" id="">
+                            </div>
+                            </div>
+                            <hr>
+                    
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <input class="text-muted mb-0" type="text" name="address" placeholder="{{ user.address }}" id="">
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+                
+                <div class="col-lg-6">
+                    
+                    <form action="{% url 'update_password_info' %}" method="post">
+                 {% csrf_token %}
+
+                        
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Password</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="text-muted mb-0" type="password" name="password" placeholder="*********" id="">
+                                </div>
+                                </div>
+                                <hr>
+                        
+                                <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Confirm Password</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="text-muted mb-0" type="password" name="confirm_password" placeholder="*********" id="">
+                                </div>
+                                </div>
+
+                                 <hr>
+                            <div class="row">
+                            
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    
+                    </form>
+                 </div>
+      </div>
+            
+        
+
+
+</section>
+{% endblock %}

@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br>
+<br>
+<style>
+  .image-input {
+    background-image: url("{% static 'assets/profile.png' %}");
+  }
+  .text-primary{
+    color: #2b044d !important;
+  }
+
+
+
+.btn{
+background-color: #8f1bdc !important;
+margin: 5px;
+}
+  .progress-bar{
+    background-color: #8f1bdc;
+    color: #8f1bdc;
+  }
+</style>
+<section >
+  <div class="container py-5">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+
+
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
+       {% if messages %}
+
+            {% for message in messages %}
+            <div class=" alert alert-info">
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            {% endif %}
+
+    <div class="row">
+               
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            {% if profile.profile_image %}
+
+     <div class="rounded-circle img-fluid" style="margin-left: auto; margin-right: auto; background-size: cover; height: 200px; width: 200px; position: relative; cursor: pointer;   background-image: url('{{ profile.profile_image.url }}');">
+      <form id="myForm" action="{% url 'change_profile_image' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input style="position: absolute; opacity: 0; height: 100%; width: 100%; cursor: pointer;" type="file" accept="image/*" id="fileInput" name="profile_picture">
+            </form>
+            </div>
+{% else %}
+     <div class="image-input rounded-circle img-fluid" style="margin-left: auto; margin-right: auto; background-size: cover; height: 200px; width: 200px; position: relative; cursor: pointer;">
+      <form id="myForm" action="{% url 'change_profile_image' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input style="position: absolute; opacity: 0; height: 100%; width: 100%; cursor: pointer;" type="file" accept="image/*" id="fileInput" name="profile_picture">
+            </form>
+            </div>
+      {% endif %}
+            
+            <h5 class="my-3">{{ user.first_name}}</h5>
+            <p class="text-muted mb-1">member since : {{ user.date_joined|date:"d-m-Y" }}</p>
+            <p class="text-muted mb-4">Last Login : {{ user.last_login|date:"g:i A" }}</p>
+            <div class="d-flex justify-content-center mb-2">
+              <a type="button" href="{% url 'edit_user_information' %}" class="btn">Edit Profile</a>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.first_name }} {{ user.last_name }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.email }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.phone }}</p>
+              </div>
+            </div>
+            <hr>
+       
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.address }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">Subscription</span> Details
+                </p>
+                <p>Started at:<span class="text-primary font-italic me-1"> {{created}}</span></p>
+                <p>Current month started: <span class="text-primary font-italic me-1">{{current_start}}</span></p>
+                <p>Current month ended: <span class="text-primary font-italic me-1">{{current_end}}</span></p>
+               
+               
+                <p >Price: <span class="text-primary font-italic me-1"> ${{price}}</span></p>
+
+           
+                <p class="mt-4 mb-1" style="font-size: .77rem;">{{ number_of_days }} out of 30 days remaining</p>
+                <div class="progress rounded" style="height: 10px;">
+                  <div class="progress-bar" role="progressbar" style="width: {{life}}%" aria-valuenow="{{life}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">Properties</span> Information
+                </p>
+                                <h6><span class="text-primary font-italic me-1">You can add {{ profile.can_add }} properties</span></h6>
+
+                
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Properties added</p>
+                <h6><span class="text-primary font-italic me-1">You have added {{ properties.count }} properties</span></h6>
+                
+                <p class="mt-4 mb-1" style="font-size: .77rem;">{{ properties.count }} out of {{ profile.can_add }} properties are added</p>
+                <div class="progress rounded" style="height: 10px;">
+                  <div class="progress-bar" role="progressbar" style="width: {{property_consumed}}%" aria-valuenow="{{property_consumed}}"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+               
+
+                
+                <p class="mt-4 mb-1" style="font-size: .77rem;">want to increase the limit ?<br>
+                <a style="color: #8f1bdc;" href="{% url 'update_subscription'%}">click here</a>  to increase the limit.</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+const fileInput = document.getElementById("fileInput");
+const form = document.getElementById("myForm");
+
+fileInput.addEventListener("change", function () {
+  form.submit();
+});
+
+</script>
+
+{% endblock %}

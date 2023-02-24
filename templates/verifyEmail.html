@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<br>
+<br>
+
+<style>
+    .imag {
+        width: 500px;
+    }
+
+    @media screen and (max-width:767px) {
+        .imag {
+            width: 300px;
+        }
+
+    }
+</style>
+
+
+<div style="padding-top: 60px; height: 100%;" class="available-app-area mt-50">
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class=" alert alert-info">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% endif %}
+
+    <div class="container text-center">
+        <h1 style="text-align: center; font-weight: bold; margin-top: 0%; padding-top: 0%;">Your
+            account Was created</h1>
+        <p>Please verify your email</p>
+        <img class="imag" src="{% static 'assets/img/verify.gif' %}" alt="">
+
+        <br>
+
+        <a href="https://mail.google.com/mail/u/0/#inbox" class="btn  card-btn1">E-mail</a>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

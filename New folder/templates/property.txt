@@ -1,0 +1,77 @@
+<body style="background-color: #8686867b;">
+    <br>
+    <br>
+    <div
+        style="border-color: #2B044D; border-width: 5px; margin: 30px; margin-top: 50px; margin-bottom: 50px; overflow: hidden; background-color: aliceblue; box-shadow: 5px 5px 5px 5px gray;">
+
+        <div
+            style=" align-items: center; background-color: white; border-color: #000000; border-top: 1px solid #000000; padding: 13px; display: flex; flex-direction: row; justify-content: space-between;">
+            <div>
+                <img src="https://311alert.info/static/assets/331.png" width="60" height="40">
+            </div>
+
+            <div style="margin-left: 50px;">
+                <h2>
+                    Property {{status}}
+                </h2>
+            </div>
+
+        </div>
+
+        <div style="color: white; padding: 5px 10px 5px;">
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td style="border-bottom: 2px solid #2b044d96;">
+                                    <table cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                <h1
+                                                    style="font-family: monospace; line-height: 28px; font-weight: bolder; background-color:#2B044D; color:#ffff; width: fit-content; padding: 8px;">
+                                                    Hi {{fname}},
+                                                </h1>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td
+                                                style="color: #000; font-family: sans-serif; font-size: 16px; font-weight: bold; line-height: 22px;">
+                                                Property: {{ borough }}, BIN{{ bin_number }}
+                                                 {{ block }}, {{ lot }},  
+                                                 {{ street }}, {{ house }}
+                                                 {{ address }} was {{status}}.
+                                            </td>
+                                        </tr>
+                                        <br>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <table cellspacing="0" cellpadding="0">
+
+                                        <tr align="left">
+                                            <td height="45"
+                                                style="font-size: 18px; font-family: monospace; font-weight: bold; margin-left: 0;">
+                                                <br>
+                                                <a href="https://311alert.info"
+                                                    style="color: #ffffff; text-decoration: none;  background-color: #f9218d; width:fit-content; padding: 10px 30px 10px 30px">
+                                                    311Alerts</a>
+
+                                                <br>
+                                                <br>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>

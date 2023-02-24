@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Best Pricing Start -->
+<br><br>
+
+
+<div class="container text-center">
+    <br><br>
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Add Property</li>
+        </ol>
+    </nav>
+    <br><br>
+    <div>
+        <div class="container text-center mt-3">
+
+
+
+            <style>
+                .batn {
+                    background-color: #8f1bdc;
+                    padding: 2px 20px;
+                    border-radius: 5px;
+                    border: 5px solid #8f1bdc;
+                }
+
+                .first {
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+
+                }
+
+
+
+                input {
+                    /* text-align: center; */
+                    font-size: medium;
+                    padding: 10px;
+                    margin: 10px;
+                    width: 100%;
+                    border: 1px solid grey;
+                    border-radius: 5px;
+                }
+
+                .form-select {
+                    height: 45px;
+                    margin: 10px;
+                    width: 100%;
+                    border: 1px solid grey;
+                    text-align: center;
+                    font-size: medium;
+
+                }
+
+                .contact-container {
+                    padding-left: 18%;
+                }
+
+                @media screen and (max-width:767px) {
+
+                    .contact-container {
+                        padding-left: 0%;
+                    }
+
+                    .contact-single {
+                        margin-top: 80px;
+                    }
+                }
+            </style>
+
+
+            <div class="row adding-row">
+                <form action="{% url 'edit_property' pro.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <br>
+
+                            <h1>Property/DOB Information</h1>
+                        </div>
+                        <div class="col-md-12">
+                            <p>Edit info for the property.</p>
+                        </div>
+                        <br>
+                        <div class="col-md-12 col-sm-12">
+
+                            <select class="form-select form-select-lg mb-3" name="borough" id="borough" required>
+                                <option selected>Select a Borough * </option>
+                                <option value="Manhattan">Manhattan</option>
+                                <option value="Bronx">Bronx</option>
+                                <option value="Brooklyn">Brooklyn</option>
+                                <option value="Queens">Queens</option>
+                                <option value="Staten Island">Staten Island</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="col-md-12 col-sm-12">
+                            <input name="house" type="text" placeholder="House Number *" required
+                                value="{{ pro.house }}">
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <input name="street" type="text" placeholder="Street Name *" required
+                                value="{{ pro.street }}">
+                        </div>
+
+
+                        <div class="col-md-12 col-sm-12">
+                            <input name="block" type="text" placeholder="Block *" required value="{{ pro.block }}">
+                        </div>
+
+
+
+                        <div class="col-md-12 col-sm-12">
+                            <input name="lott" type="text" placeholder="Lot *" required value="{{ pro.lott }}">
+                        </div>
+
+
+                        <div class="col-md-12 col-sm-12">
+                            <input name="zip" type="text" placeholder="ZIP Code *" required value="{{ pro.zip }}">
+                        </div>
+
+                        {% if pro.property_name is not None%}
+                        <div class="col-md-12 col-sm-12">
+                            <input name="property_name" type="text" placeholder="Property Name (optional)"
+                                value="{{ pro.property_name}}">
+                        </div>
+                        {% else %}
+
+                        <div class="col-md-12 col-sm-12">
+                            <input name="property_name" type="text" placeholder="Property Name (optional)">
+                        </div>
+                        {% endif %}
+
+
+
+
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="bin_number" type="text" placeholder="BIN *" required
+                                        value="{{ pro.bin_number }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <br>
+                                        don't have the bin number?
+                                        <a target="_blank" href="{% url 'property_search_page' %}"
+                                            style="color: #8f1bdc;">click here
+                                            to find it now
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <hr>
+                    <div class="col-md-12">
+                        <button type="submit" class="batn">
+                            <h1
+                                style="border-radius: 5px; padding: 10px 10px 5px 10px; font-size: medium; color: white; background-color: #8f1bdc;">
+                                Update Information</h1>
+                        </button>
+                        <br><br>
+                        <br><br><br><br>
+                    </div>
+                </form>
+                <div class="row align-items-center text-center">
+                    <div class="col-md-12">
+                        <h1>Contact Information</h1>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <p>You can also change the contact information one-by-one by clicking the update contact button.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row text-center d-flex" style="justify-content: space-around;">
+                            {% for contact in contacts %}
+                            <div class="col-md-3 col-sm-12 mt-5">
+                                <h5>{{contact.name}}</h5>
+                                <h5>{{contact.email}}</h5>
+                                <h5>{{contact.phone}}</h5>
+                                <br>
+                                <button type="button" class="batn" data-toggle="modal"
+                                    data-target="#updatecontact{{contact.id}}">
+                                    Update Contact
+                                </button>
+                            </div>
+                            <div class="modal fade" id="updatecontact{{contact.id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Updating Contact</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{% url 'edit_contact' contact.id  %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="modal-body">
+                                                <input type="text" name="name" placeholder="Name" required>
+                                                <input type="email" name="email" placeholder="Email" required>
+                                                <input type="phone" name="phone" placeholder="Phone" required>
+                                                <input type="hidden" name="property_id" value="{{ pro.id }}">
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <br>
+                        <hr><br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+
+
+{% endblock %}

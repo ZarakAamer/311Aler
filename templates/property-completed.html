@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Best Pricing Start -->
+
+
+
+<style>
+    input {
+        margin: 5px;
+        min-width: 100%;
+    }
+
+    .price_list>li {
+        border: 1px solid #8f1bdc;
+        border-radius: 8px;
+        padding: 10px 20px 10px 20px;
+        margin-left: 30px;
+
+    }
+
+    .second_class {
+        margin-left: 50px;
+        border-radius: 5px;
+        padding: 40px;
+    }
+
+    @media screen and (max-width:767px) {
+
+        .price_list>li {
+
+            margin-left: auto;
+
+        }
+
+        .second_class {
+            margin-left: auto;
+        }
+    }
+</style>
+<!-- Best Pricing Start -->
+<div>
+
+    <div style="margin-top: 220px; margin-bottom: 200px; " class="container">
+        <div class="section-tittle section-tittle3">
+            <h2 class="text-center">You have reached to the limit of your subscription.</h2>
+
+
+
+            <div class="row align-items-center">
+                <div class="col-md-6 col-sm-3">
+
+                    <h4>Want to add more properties ?</h4>
+                    <p>Fill the form below to extend your subscription.</p>
+                    <div class="row adding-row text-center align-items-center"
+                        style="border-radius: 5px; padding: 50px;">
+
+                        <form action="{% url 'change_subscription' %}" method="post"
+                            style="margin-left: auto; margin-right: auto;">
+                            {% csrf_token %}
+                            <div class=" row">
+                                <input type="number" name="number" placeholder="No of properties (e.g 11)">
+                            </div>
+
+                            <div class="row">
+                                <input type="text" name="name" placeholder="Name">
+                            </div>
+
+                            <div class="row">
+                                <input type="email" name="email" placeholder="Email">
+                            </div>
+
+                            <div class="row">
+                                <input type="text" name="add_msg" placeholder="Additional Message">
+                            </div>
+                            <button type="submit" class="btn">Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="col-md-5  col-sm-3 second_class">
+                    <h4>How we charge you?</h4>
+                    <p>Below is the pricing list for subscription upgrades.</p>
+                    <div class="row adding-row text-center align-items-center"
+                        style="border-radius: 5px; padding: 50px;">
+
+                        <ul class="price_list">
+                            <li>
+                                1
+                                property for just
+                                $10
+                            </li>
+                            <br>
+                            <li>10 to 20 properties $8/property</li>
+                            <br>
+                            <li>20 to 50 properties $6/propert </li>
+                            <br>
+                            <li>50 plus properties $4/property</li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+
+    <div class="mobile-apps">
+        <div class="container text-center">
+            <div class="row">
+
+                <h2 style="font-size: xx-large; 
+    color: white;">311Alert is avalible to be used on any device. Download Now</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="app-btn1"><img src="{% static 'assets/img/shape/app_btn1.png' %}" alt=""></a>
+
+                    <a href="#" class="app-btn2"><img src="{% static 'assets/img/shape/app_btn2.svg' %}" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Available App End-->
+
+<!-- Say Something Start -->
+<div class="say-something-aera pt-90 pb-90 fix">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="offset-xl-1 offset-lg-1 col-xl-5 col-lg-5">
+                <div class="say-something-cap">
+                    <h2>Say Hello To The Collaboration Hub.</h2>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3">
+                <div class="say-btn">
+                    <a href="{% url 'contact' %}" class="btn radius-btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- shape -->
+    <div class="say-shape">
+        <img src="{% static 'assets/img/shape/say-shape-left.png' %}" alt=""
+            class="say-shape1 rotateme d-none d-xl-block">
+        <img src="{% static 'assets/img/shape/say-shape-right.pn' %}" alt="" class="say-shape2 d-none d-lg-block">
+    </div>
+</div>
+<!-- Say Something End -->
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,530 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    .for-top-margin {
+        margin-top: 100px;
+    }
+
+    .hero__caption {
+        margin-left: 30px;
+        margin-top: 0px;
+    }
+
+    @media screen and (min-width:767px) and (max-width:991px) {
+        .hero__caption {
+            margin-left: 10px;
+            margin-top: 0px;
+        }
+
+        .for-top-margin {
+            margin-top: 50px;
+        }
+    }
+
+
+    @media screen and (min-width:300px) and (max-width:767px) {
+        .hero__caption {
+            margin-left: 5px;
+            margin-top: 0px;
+        }
+
+        .for-top-margin {
+            margin-top: 10px;
+        }
+    }
+</style>
+<div class="for-top-margin" style="height: 89.4vh; width: 100%; overflow: hidden;"
+    data-background="{% static 'assets/img/index.jpeg' %}">
+    <div class="row d-flex align-items-center">
+        <div style="background-color: rgba(255, 255, 255, 0.591);" class="col-lg-8 col-md-8 ">
+            <div class="hero__caption">
+                <br><br>
+                <br>
+                <h1 data-animation="fadeInUp" data-delay=".6s" style="font-weight: bold;">Receive real-time alerts about
+                    <br>your
+                    property(s)
+                </h1>
+                <p style="font-weight: bolder; color: black;" data-animation="fadeInUp" data-delay=".8s">Why
+                    not stress over your properties when you can simply
+                    add them here, and recieve alerts daily. We will keep a watch</p>
+                <!-- Slider btn -->
+                {% if request.user.is_authenticated %}
+                {% else %}
+                <div class="slider-btns">
+                    <!-- Hero-btn -->
+                    <a data-animation="fadeInLeft" data-delay="1.0s" href="{% url 'register' %}"
+                        class="btn radius-btn">Sign Up</a>
+                    <!-- Video Btn -->
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container text-center mt-3">
+    <br>
+    <br>
+    <br><br>
+    <h2 style="color: #2b044d">
+        Search Property From Here
+    </h2>
+    <br><br>
+    <!-- Section Tittle -->
+
+    <style>
+        .first {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: row;
+            max-height: 900px;
+            min-height: 100px;
+            min-width: 100%;
+        }
+
+        .first .div1 {
+            padding: 10px;
+            width: 700px;
+        }
+
+
+        input {
+            padding: 8px;
+            width: 100%;
+        }
+
+        textarea {
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid grey;
+        }
+
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .first {
+                display: flex;
+                flex-direction: row;
+                min-width: 100%;
+
+            }
+
+            .first .div1 {
+                padding: 14px;
+                width: 500px;
+            }
+
+
+            input {
+                font-size: medium;
+                padding: 8px;
+                width: 100%;
+            }
+
+        }
+
+        @media (min-width: 300px) and (max-width: 767px) {
+            .first {
+                display: flex;
+                flex-direction: column;
+                min-width: 100%;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+            }
+
+            .first .div1 {
+                padding: 14px;
+                width: 300px;
+            }
+
+
+            input {
+                font-size: medium;
+                padding: 8px;
+                width: 100%;
+            }
+
+        }
+
+        select {
+
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid grey;
+            text-align: center;
+            font-size: medium;
+            padding: 8px;
+            width: 100%;
+        }
+    </style>
+
+
+
+    <div class="first">
+        <div class="div1">
+            <select class="form-select form-select-lg mb-3" id="brg" style="width: 100%;">
+                <option selected>Select a Borough</option>
+                <option value="1">Manhattan</option>
+                <option value="2">Bronx</option>
+                <option value="3">Brooklyn</option>
+                <option value="4">Queens</option>
+                <option value="5">Staten Island</option>
+
+            </select>
+
+        </div>
+
+        <div class="div1">
+            <input name="housenumber" value="" type="text" id="hnum" placeholder="House No.">
+        </div>
+
+        <div class="div1">
+            <input name="streetnumber" value="" type="text" id="snum" placeholder="Street Name.">
+        </div>
+
+        <div class="div1">
+            <a href="#" onclick="searchproperty()" id="seacher" class="batn">
+                <h1
+                    style="border-radius: 5px; padding: 10px; font-size: medium; color: white; background-color: #8f1bdc;">
+                    SEARCH</h1>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        function searchproperty() {
+            console.log("Ayeee Hyeee")
+            let snumber = document.getElementById("snum").value.replace(" ", "+");
+            let hnumber = document.getElementById("hnum").value;
+            let boro = document.getElementById("brg").value;
+            let link = document.getElementById("seacher");
+            console.log(snumber)
+
+            console.log(hnumber)
+            console.log(boro)
+            link.href = "https://a810-bisweb.nyc.gov/bisweb/PropertyProfileOverviewServlet?boro=" + boro + "&houseno=" + hnumber + "&street=" + snumber + "&go2=+GO+&requestid=0"
+        }
+    </script>
+
+
+
+</div>
+
+<section class="service-area sky-blue section-padding2">
+    <div class="container">
+        <!-- Section Tittle -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-12">
+                <div class="section-tittle text-center">
+                    <p>Welcome to 311 Alert, your one-stop source for up-to-date information on 311 notifications for
+                        properties in New York
+                        City.
+                        Our mission is to provide real estate professionals and property owners with the most accurate
+                        and timely information on
+                        311 complaints and violations for properties in the five boroughs. We understand that staying on
+                        top of 311 alerts can
+                        be a daunting task, which is why we have made it our mission to make it as easy and convenient
+                        as possible for you to
+                        access this important information.
+                        Our website is user-friendly and easy to navigate, making it simple for you to search for
+                        properties by address or
+                        borough. We also offer an email subscription service, so you can receive alerts directly to your
+                        inbox. Our alerts
+                        include detailed information on the complaint or violation, as well as the date and status of
+                        the case.
+                        Whether you are a property owner looking to stay on top of any potential issues, or a real
+                        estate professional looking
+                        to gain a competitive edge in the market, 311 Alert has you covered. Sign up today and start
+                        receiving the most accurate
+                        and timely information on 311 alerts for properties in New York.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Section caption -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="services-caption text-center mb-30">
+                    <div class="service-icon">
+                        <span class="flaticon-businessman"></span>
+                    </div>
+                    <div class="service-cap">
+                        <h4><a href="#">Easily Manage</a></h4>
+                        <p>It takes just three easy steps, You simply create an account, select a plan, and add.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="services-caption text-center mb-30">
+                    <div class="service-icon">
+                        <span class="flaticon-pay"></span>
+                    </div>
+                    <div class="service-cap">
+                        <h4><a href="#">Card Payments</a></h4>
+                        <p>Simply add your credit card and pay the actual amount, there is no hidden fees.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="services-caption text-center mb-30">
+                    <div class="service-icon">
+                        <span class="flaticon-plane"></span>
+                    </div>
+                    <div class="service-cap">
+                        <h4><a href="#">Quick Support</a></h4>
+                        <p>If you need prompt technical assistance, our team is avalible 24/7 to assist you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Area End -->
+<!-- Applic App Start -->
+
+<!-- Applic App End -->
+<!-- Best Pricing Start -->
+<section class="mt-30">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="section-tittle section-tittle2 text-center">
+                    <h2 style="color: #2b044d">Choose One Of Our Best Price Plans.</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="pricing-card-area">
+
+    <div class="container text-center">
+
+
+        <div class="row text-center">
+            {% for i in prices %}
+
+            {% if i.is_popular %}
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-card text-center mb-30"
+                    style="background-color: #8f1bdc; color: #ffff; box-shadow: -10px -10px 1px 2px #8f1bdc; overflow-x: hidden;">
+                    <h5
+                        style="margin-left: 70px; margin-top: -20px; margin-right: -50%; background-color: #ffff; color: #8f1bdc; font-size: smaller; font-weight: bolder;">
+                        Most
+                        Popular</h5>
+                    <div class="card-top mt-3">
+                        <span style="color: #ffff;">{{i.name}}</span>
+                        <h4 style="color: #ffff;">${{i.price_per_month}}<span
+                                style="font-size:xx-small; color: #ffff;">/property(s)</span></h4>
+                    </div>
+                    <div class="card-bottom" style="color: #ffff;">
+                        <ul>
+
+
+                            <li style="color: #ffff;">Properties: {{ i.number_of_properties }}</li>
+                            <li style="color: #ffff;">Email support: Yes</li>
+                            <li style="color: #ffff;">whatsapp support: Yes</li>
+                        </ul>
+                        {% if profiled %}
+                        <a href="{% url 'pro_user' %}" class="btn card-btn1"
+                            style="color: #8f1bdc; background-color: #ffff;">Upgrade</a>
+
+                        {% else %}
+                        <form action="{% url 'pro' %}" method="post">
+
+
+                            {% csrf_token %}
+
+                            <input type="hidden" name="account_type" value="{{i.token}}">
+
+
+                            <button type="submit" class="btn card-btn1"
+                                style="color: #8f1bdc; background-color: #ffff;">Get Started</button>
+                        </form>
+
+                        {% endif %}
+
+
+
+                    </div>
+                </div>
+            </div>
+            {% else %}
+
+
+
+
+
+
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-card text-center mb-30">
+                    <div class="card-top">
+                        <span>{{i.name}}</span>
+
+
+                        <h4>${{ i.price_per_month }}<span style="font-size:xx-small;">/property</span></h4>
+                    </div>
+                    <div class="card-bottom">
+                        <ul>
+                            {% if i.number_of_properties > 1000 %}
+                            <li>Properties: Unlimited</li>
+                            {% else %}
+                            <li>Properties: {{ i.number_of_properties }}</li>
+                            {% endif %}
+                            <li>Email support: Yes</li>
+                            <li>whatsapp support: Yes</li>
+                        </ul>
+
+                        {% if profiled %}
+                        <a href="{% url 'pro_user' %}" class="btn card-btn1">Upgrade</a>
+
+                        {% else %}
+                        <form action="{% url 'pro' %}" method="post">
+
+
+                            {% csrf_token %}
+
+                            <input type="hidden" name="account_type" value="{{i.token}}">
+
+
+                            <button type="submit" class="btn card-btn1">Get Started</button>
+                        </form>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+
+
+
+
+            {% endfor %}
+
+
+
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-card text-center mb-30">
+                    <div class="card-top">
+                        <span>Monthly</span>
+                        <h4>$$.$$ <span>/property(s)</span></h4>
+                    </div>
+                    <div class="card-bottom">
+                        <ul>
+
+                            <li>Properties Can Be Added: 20+</li>
+
+                            <li>Contact us if you want to</li>
+                            <li> add more than 20 properties</li>
+                        </ul>
+
+                        <a href="{% url 'contact' %}" class="btn card-btn1">Contact</a>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="service-area">`
+        <div class="container text-center">
+
+            <form class="form-contact contact_form" action="{% url 'contact' %}" method="post" id="contactForm"
+                novalidate="novalidate">
+                <h1 style="color: #2b044d;">Contact Us</h1>
+                <br>
+                <br><br>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input class="" name="name" id="name" type="text" placeholder="Enter your name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="">
+                            <input class="" name="email" id="email" type="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+
+                        <input name="subject" id="subject" type="text" placeholder="Enter Subject">
+                        <br>
+                        <br>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <textarea class=" w-100" name="message" id="message" cols="30" rows="9"
+                                placeholder="Enter Message"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit"
+                        style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 10px 40px; font-size: medium; color: white; background-color: #8f1bdc;">SEND</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="mobile-apps">
+        <div class="container text-center">
+            <div class="row">
+
+                <h2 style="font-size: xx-large; 
+    color: white;">311Alert is avalible to be used on any device. Download Now</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="app-btn1">
+                        <img src="{% static 'assets/img/shape/app_btn1.png' %}" alt="">
+                    </a>
+
+                    <a href="#" class="app-btn2"><img src="{% static 'assets/img/shape/app_btn2.svg' %}" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    {% endblock %}

@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Best Pricing Start -->
+<br><br>
+
+
+<div class="container text-center">
+  <br><br>
+
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Add Property</li>
+    </ol>
+  </nav>
+  <br><br>
+  <div>
+    <div class="container text-center mt-3">
+
+
+
+      <style>
+        .batn {
+          background-color: #8f1bdc;
+          padding: 2px 20px;
+          border-radius: 5px;
+          border: 5px solid #8f1bdc;
+        }
+
+        .first {
+          display: flex;
+          flex-direction: column;
+          min-width: 100%;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+
+        }
+
+
+
+        input {
+          /* text-align: center; */
+          font-size: medium;
+          padding: 10px;
+          margin: 10px;
+          width: 100%;
+          border: 1px solid grey;
+          border-radius: 5px;
+        }
+
+        .form-select {
+          height: 45px;
+          margin: 10px;
+          width: 100%;
+          border: 1px solid grey;
+          text-align: center;
+          font-size: medium;
+
+        }
+
+        .contact-container {
+          padding-left: 18%;
+        }
+
+        @media screen and (max-width:767px) {
+
+          .contact-container {
+            padding-left: 0%;
+          }
+
+          .contact-single {
+            margin-top: 80px;
+          }
+        }
+      </style>
+
+
+      <div class="row adding-row" style="padding-right: 23px;">
+        <form action="{% url 'addproperty' %}" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Property/DOB Information</h1>
+            </div>
+            <div class="col-md-12">
+              <p>Add info for the property.</p>
+            </div>
+            <br>
+            <div class="col-md-12 col-sm-12">
+
+              <select class="form-select form-select-lg mb-3" name="borough" id="borough" required>
+                <option selected>Select a Borough * </option>
+                <option value="Manhattan">Manhattan</option>
+                <option value="Bronx">Bronx</option>
+                <option value="Brooklyn">Brooklyn</option>
+                <option value="Queens">Queens</option>
+                <option value="Staten Island">Staten Island</option>
+              </select>
+
+            </div>
+
+
+
+
+            <div class="col-md-12 col-sm-12">
+              <input name="house" type="text" placeholder="House Number *" required>
+            </div>
+
+
+            <div class="col-md-12 col-sm-12">
+              <input name="street" type="text" placeholder="Street Name *" required>
+            </div>
+
+
+            <div class="col-md-12 col-sm-12">
+              <input name="block" type="text" placeholder="Block *" required>
+            </div>
+
+
+            <div class="col-md-12 col-sm-12">
+              <input name="lott" type="text" placeholder="Lot *" required>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+              <input name="zip" type="text" placeholder="ZIP Code *" required>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <input name="bin_number" type="text" placeholder="BIN *" required>
+                </div>
+                <div class="col-md-6">
+                  <p>
+                    <br>
+                    don't have bin number?
+                    <a target="_blank" href="{% url 'property_search_page' %}" style="color: #8f1bdc;">click here
+                      to find it now
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+              <input name="property_name" type="text" placeholder="Property Name (optional)">
+            </div>
+
+          </div>
+
+
+          <hr>
+          <br<br>
+
+            <div class="row align-items-center text-center">
+              <div class="col-md-12">
+                <h1>Contact Information</h1>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <p>Want to receive alerts on more devices? You can now add upto 3 additional contacts.</p>
+              </div>
+            </div>
+
+
+            <div class="row text-center contact-container">
+              <div class=" col-md-3 col-sm-3 contact-single">
+                <h4>Contact 1</h4>
+                <input type="text" name="name" placeholder="Name">
+                <input type="email" name="email" placeholder="Email">
+                <input type="tel" name="phone" placeholder="Phone">
+                <br>
+                <p style="font-weight: bold;">OR</p>
+                <select class="form-select form-select-lg" name="additional">
+                  <option value="already">Choose One</option>
+                  {% for cont in contact_list %}
+                  <option value="{{cont.id}}">{{cont.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+
+              <div class="col-md-3 col-sm-3 contact-single">
+                <h4>Contact 2</h4>
+
+                <input type="text" name="name1" placeholder="Name">
+                <input type="email" name="email1" placeholder="Email">
+                <input type="tel" name="phone1" placeholder="Phone">
+
+                <br>
+                <p style="font-weight: bold;">OR</p>
+                <select class="form-select form-select-lg" name="additional1">
+                  <option value="already">Choose One</option>
+                  {% for cont in contact_list %}
+                  <option value="{{cont.id}}">{{cont.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+
+              <div class="col-md-3 col-sm-3 contact-single">
+                <h4>Contact 3</h4>
+
+                <input type="text" name="name2" placeholder="Name">
+                <input type="email" name="email2" placeholder="Email">
+                <input type="tel" name="phone2" placeholder="Phone">
+                <br>
+                <p style="font-weight: bold;">OR</p>
+                <select class="form-select form-select-lg" name="additional2">
+                  <option value="already">Choose One</option>
+                  {% for cont in contact_list %}
+                  <option value="{{cont.id}}">{{cont.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+            </div>
+            <hr>
+            <div class="col-md-12">
+              <button type="submit" class="batn">
+                <h1
+                  style="border-radius: 5px; padding: 10px 10px 5px 10px; font-size: medium; color: white; background-color: #8f1bdc;">
+                  Add Property</h1>
+              </button>
+              <br>
+              <hr><br>
+            </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

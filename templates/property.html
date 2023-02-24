@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<style>
+    .modal.modal-fullscreen .modal-dialog {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+    }
+
+    .modal.modal-fullscreen .modal-content {
+        height: auto;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+
+    .modal.modal-fullscreen .modal-body {
+        overflow-y: auto;
+    }
+
+
+    .batn {
+        background-color: #8f1bdc;
+        padding: 2px 20px;
+        border-radius: 5px;
+        border: 5px solid #8f1bdc;
+    }
+
+    .add-contacts {
+        margin-left: 18%;
+    }
+
+    .contact-details {
+        border: none;
+        border-radius: 5px;
+        margin: 2px;
+    }
+
+
+    .contact-details-last {
+        border: none;
+        border-radius: 5px;
+        margin: 2px;
+    }
+
+    .labled {
+        font-weight: bold;
+    }
+
+    .close {
+        margin-right: 20px !important;
+        color: #8f1bdc;
+    }
+
+    .btn {
+        margin-right: 40px !important;
+        padding: 15px 20px 15px 20px;
+    }
+</style>
+
+
+<div class="container text-center" style="color: #2b044d; min-width: 100%;">
+
+    <br>
+    <br><br>
+    <br>
+
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'home' %}"
+                    style="color: #8f1bdc;">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Properties</li>
+        </ol>
+    </nav>
+
+
+
+
+
+
+    <br><br><br><br>
+    <h1 style="text-align:center;">Your Current Properties </h1>
+    <br><br><br><br>
+
+
+    <div class="row" style=" height: max-content;">
+
+
+        {% if properties %}
+        <div class="table-responsive">
+            <table style=" color: #8f1bdc;" class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Borough</th>
+                        <th scope="col">House Number</th>
+                        <th scope="col">Street Name</th>
+                        <th scope="col">Property Name</th>
+                        <th scope="col">BIN</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Open</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pro in properties %}
+                    <tr>
+                        <td>{{ pro.borough }}</td>
+                        <td>{{ pro.house }}</td>
+                        <td>{{ pro.street }}</td>
+                        <td>{{ pro.property_name }}</td>
+                        <td>{{ pro.bin_number }}</td>
+
+
+                        <td><a href="{% url 'edit_property_page' pro.id %}" type="button"
+                                style="color: #8f1bdc; padding: 3px 15px; border-radius: 5px;"><i
+                                    class="far fa-1x fa-edit"></i></a>
+
+                            <a href="{% url 'delete_street_property' pro.id %}" type="button"
+                                style="color: #8f1bdc; padding: 3px 15px; border-radius: 5px;"><i
+                                    class="far fa-1x fa-trash-alt"></i></a>
+                        </td>
+                        <td><a href="{% url 'property_details' pro.id %}" type="button"
+                                style="background-color: #8f1bdc; padding: 3px 15px; border-radius: 5px;">
+                                Open</a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+<br>
+<br>
+<br><br>
+{% endblock %}

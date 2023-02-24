@@ -1,0 +1,149 @@
+{% load static %}
+
+
+
+<style>
+    .the_logo {
+        margin-top: 10px;
+        width: 160px;
+        height: 65px;
+        padding-bottom: 4px;
+    }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: -30px;
+}
+
+
+.dropdown.show .dropdown-menu {
+  display: block;
+}
+.dropdown-menu {
+    width: 100%;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+.dropdown-item{
+  color: #8f1bdc;
+}
+.dropdown-item:hover{
+  background-color: #8f1bdc;
+  color: #fff;
+}
+
+    @media (max-width: 990px) {
+        .the_logo {
+            margin-top: 5px;
+
+            width: 170px;
+            height: 70px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .the_logo {
+            margin-top: 0px;
+
+            width: 140px;
+            height: 60px;
+            padding-bottom: 2px;
+
+        }
+        .main-header{
+          min-height: 100% !important;
+        }
+        
+    }
+
+
+</style>
+
+
+<header>
+  <!-- Header Start -->
+  <div class="header-area header-transparrent">
+    <div class="main-header header-sticky">
+      <div class="container" style="min-width: 80%;">
+        <div class="row" style="display: flex; flex-direction: row; justify-content: space-between;">
+          <!-- Logo -->
+          <div class="col-xl-2 col-lg-2 col-md-2">
+            <div class="logo">
+              <a href="{% url 'home' %}">
+                <img class="the_logo" src="{% static 'assets/311.png' %}" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-10">
+            <!-- Main-menu -->
+            <div class="main-menu f-right d-none d-lg-block">
+              <nav>
+                <ul id="navigation">
+                  {% if request.user.is_authenticated %}
+                  <li><a href="{% url 'pro_home' %}">Home</a></li>
+                  <li><a href="{% url 'home' %}">Properties</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      {{request.user.first_name}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'user_prof' %}" ><i class="fas fa-user"></i>&nbsp;&nbsp;Profile </a>
+                      <a class="dropdown-item" href="{% url 'logout' %}" ><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</a>
+                    </div>
+                  </li>
+                  {% else %}
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'price' %}">Pricing</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  <li><a style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 10px 20px;" href="{% url 'register' %}">Sign Up</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <!-- Mobile Menu -->
+          <div class="col-12">
+            <div class="mobile_menu d-block d-lg-none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+</header>
+
+<script>
+  const dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function() {
+this.classList.toggle('show');
+});
+</script>

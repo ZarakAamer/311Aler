@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .for-border {
+        border: none;
+        border-bottom: 2px solid grey;
+    }
+</style>
+
+
+<div class="container text-center" style="color: #2b044d;">
+
+    <br><br>
+    <br><br>
+
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+
+
+            <li class="breadcrumb-item active" aria-current="page">Violations</li>
+        </ol>
+    </nav>
+    <br>
+    <br><br>
+
+
+    <div class="accordion" id="accordionExample">
+
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;" class="btn-link collapsed"
+                        type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                        aria-controls="collapseTwo">
+                        Active Violations <span style="color: #2b044d;"> ({{ act_voilations.all.count}}) </span>
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="accordion text-center" id="accordionExampleviolations">
+
+
+                        {% for i in act_voilations %}
+
+                        <div class="row text-center mx-auto" style="min-width: 100%;">
+                            <div class="card text-center max-auto" style="min-width: 100%;">
+                                <div class=" card-header" id="headingTwo{{i.id}}">
+                                    <h5 class="mb-0">
+                                        <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;"
+                                            class="btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseTwo{{i.id}}" aria-expanded="false"
+                                            aria-controls="collapseTwo{{i.id}}">
+                                            violation location: {{ i.property.house}} {{i.property.street}}
+                                            {{i.property.borough}}
+
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo{{i.id}}" class="collapse" aria-labelledby="headingTwo{{i.id}}"
+                                    data-parent="#accordionExampleviolations">
+                                    <div class="card-body">
+
+                                        <div class="table-responsive">
+                                            <table style=" color: #8f1bdc;" class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Number</th>
+                                                        <th scope="col">Type</th>
+                                                        <th scope="col">File Date</th>
+                                                        <th scope="col">Dismissal Date</th>
+                                                        <th scope="col">Bage No</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td> <a style="text-decoration: underline; color: #2b044d;"
+                                                                target="_blank" href="{{i.v_link}}">
+                                                                {{ i.voilation_number }}</a>
+                                                        </td>
+                                                        <td>{{ i.voilation_type }}</td>
+                                                        <td>{{ i.voilation_filedate }}</td>
+                                                        <td>{{ i.voilation_dismissaldate }}</td>
+                                                        <td>{{ i.voilation_Bageno }}</td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br><br>
+        <hr><br><br>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;" class="btn-link collapsed"
+                        type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                        aria-controls="collapseThree">
+                        Resolved violations <span style="color: #2b044d;"> ({{ res_voilations.all.count}})
+                        </span>
+
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="accordion text-center" id="accordionExampleresviolations">
+
+
+                        {% for i in res_voilations %}
+
+                        <div class="row text-center mx-auto" style="min-width: 100%;">
+                            <div class="card text-center max-auto" style="min-width: 100%;">
+                                <div class="card-header" id="headingThree{{i.id}}">
+                                    <h5 class="mb-0">
+                                        <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;"
+                                            class="btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseThree{{i.id}}" aria-expanded="false"
+                                            aria-controls="collapseThree{{i.id}}">
+                                            violation location: violation location: {{ i.property.house}}
+                                            {{i.property.street}}
+                                            {{i.property.borough}}
+
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree{{i.id}}" class="collapse" aria-labelledby="headingThree{{i.id}}"
+                                    data-parent="#accordionExampleresviolations">
+                                    <div class="card-body">
+
+                                        <div class="table-responsive">
+                                            <table style=" color: #8f1bdc;" class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Number</th>
+                                                        <th scope="col">Type</th>
+                                                        <th scope="col">File Date</th>
+                                                        <th scope="col">Dismissal Date</th>
+                                                        <th scope="col">Bage No</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td> <a style="text-decoration: underline; color: #2b044d;"
+                                                                target="_blank" href="{{i.v_link}}">
+                                                                {{ i.voilation_number }}</a>
+                                                        </td>
+                                                        <td>{{ i.voilation_type }}</td>
+                                                        <td>{{ i.voilation_filedate }}</td>
+                                                        <td>{{ i.voilation_dismissaldate }}</td>
+                                                        <td>{{ i.voilation_Bageno }}</td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<br>
+<br>
+<br><br>
+{% endblock %}

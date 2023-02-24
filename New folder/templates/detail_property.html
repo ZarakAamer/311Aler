@@ -1,0 +1,328 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .for-border {
+        border: none;
+        border-bottom: 2px solid grey;
+    }
+</style>
+
+
+<div class="container text-center" style="color: #2b044d;">
+
+    <br><br>
+    <br><br>
+
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'properties_page' %}"
+                    style="color: #8f1bdc;">Properties</a>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">Property</li>
+        </ol>
+    </nav>
+    <br>
+    <br><br>
+
+
+
+    <a href="{% url 'edit_property_page' pro.id %}" type="button"
+        style="color: #8f1bdc; padding: 3px 15px; border-radius: 5px; float: right;"><i
+            class="far fa-2x fa-edit"></i></a><a href="{% url 'delete_street_property' pro.id %}" type="button"
+        style="color: #8f1bdc; padding: 3px 15px; border-radius: 5px; float: right;"><i
+            class="far fa-2x fa-trash-alt"></i></a>
+
+
+    <hr>
+
+
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;" class="btn-link"
+                        type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        Property Information
+                    </a>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row text-center for-border">
+                        <div class="col-md-12">
+                            <h3>Property Information</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table style=" color: #8f1bdc;" class="table table-borderless">
+                                <thead border="grey">
+                                    <tr>
+                                        <th scope="col">Borough</th>
+                                        <th scope="col">House Number</th>
+                                        <th scope="col">Street Name</th>
+                                        <th scope="col">State</th>
+                                        <th scope="col">ZIP Code</th>
+                                        <th scope="col">Property Name</th>
+
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ pro.borough }}</td>
+                                        <td>{{ pro.house_number }}</td>
+                                        <td>{{ pro.street_name }}</td>
+                                        <td>{{ pro.state }}</td>
+                                        <td>{{ pro.zip }}</td>
+                                        <td>{{ pro.property_name }}</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;" class="btn-link collapsed"
+                        type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                        aria-controls="collapseTwo">
+                        DOB Information
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row text-center for-border">
+                        <div class="col-md-12">
+                            <h3>DOB Information</h3>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <table style=" color: #8f1bdc;" class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">House Number</th>
+                                        <th scope="col">Street Name</th>
+                                        <th scope="col">ZIP Code</th>
+                                        <th scope="col">Block</th>
+                                        <th scope="col">Lot</th>
+                                        <th scope="col">BIN</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ pro.house }}</td>
+                                        <td>{{ pro.street }}</td>
+                                        <td>{{ pro.zip_code }}</td>
+                                        <td>{{ pro.block }}</td>
+                                        <td>{{ pro.lott }}</td>
+                                        <td>{{ pro.bin_number }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br><br><br>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <a style="text-decoration: underline; color: #8f1bdc; cursor: pointer;" class="btn-link collapsed"
+                        type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                        aria-controls="collapseThree">
+                        Contact Information
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row text-center for-border">
+                        <div class=" col-md-12">
+                            <h3>Contact Information</h3>
+                        </div>
+                        <br>
+
+                        <div class="table-responsive">
+                            <table style=" color: #8f1bdc;" class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ pro.fname }}</td>
+                                        <td>{{ pro.lname }}</td>
+                                        <td>{{ pro.email }}</td>
+                                        <td>{{ pro.phone }}</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>{{ pro.fname1 }}</td>
+                                        <td>{{ pro.lname1 }}</td>
+                                        <td>{{ pro.email1 }}</td>
+                                        <td>{{ pro.phone1 }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{{ pro.fname2 }}</td>
+                                        <td>{{ pro.lname2 }}</td>
+                                        <td>{{ pro.email2 }}</td>
+                                        <td>{{ pro.phone2 }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br><br><br>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+
+    <div class="row text-center for-border">
+
+
+        <div class="col-md-12">
+            <h3>Complaints</h3>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table style=" color: #8f1bdc;" class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Complaint Number</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Inspection Date</th>
+                        <th scope="col">Deposition</th>
+                        <th scope="col">Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comp in complaints %}
+                    <tr>
+                        <td><a style="color: #2b044d; text-decoration: underline;" href="{{complaint_link}}">
+                                {{comp.complaint_number }}</a></td>
+                        <td>{{ comp.complaint_adress }}</td>
+                        <td>{{ comp.complaint_date }}</td>
+                        <td>{{ comp.complaint_category }}</td>
+                        <td>{{ comp.complaint_inspection_date }}</td>
+                        <td>{{ comp.complaint_deposition }}</td>
+                        <td>{{ comp.complaint_status }}</td>
+
+
+                    </tr>
+                    <br>
+                    <tr">
+
+                        <td colspan="7" style="color: grey;">{{comp.complaint_details}}</td>
+
+                        </tr>
+                        {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <br><br><br>
+
+    </div>
+
+
+    <br><br><br>
+
+    <div class="row text-center for-border">
+        <div class="col-md-12">
+            <h3>Voilations</h3>
+        </div>
+        <br>
+
+        <br>
+        <div class="table-responsive">
+            <table style=" color: #8f1bdc;" class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Voilation Number</th>
+                        <th scope="col">Voilation Type</th>
+                        <th scope="col">Voilation Filedate</th>
+                        <th scope="col">Voilation Dismissaldate</th>
+                        <th scope="col">Voilation Bageno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in voilations %}
+                    <tr>
+                        <td>{{ i.voilation_number }}</td>
+                        <td>{{ i.voilation_type }}</td>
+                        <td>{{ i.voilation_filedate }}</td>
+                        <td>{{ i.voilation_dismissaldate }}</td>
+                        <td>{{ i.voilation_Bageno }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<br>
+<br>
+<br><br>
+{% endblock %}

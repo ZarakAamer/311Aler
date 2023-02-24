@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<br>
+<br>
+
+<style>
+    .imag {
+        width: 500px;
+    }
+
+    @media screen and (max-width:767px) {
+        .imag {
+            width: 300px;
+        }
+
+    }
+</style>
+
+
+<div style="padding-top: 60px; height: 75vh;" class="available-app-area mt-50">
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class=" alert alert-info">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% endif %}
+
+    <div class="container text-center">
+        <h1 style="text-align: center; font-weight: bold; margin-top: 0%; padding-top: 0%;">Just there!</h1>
+        <p>Please select a package that suits best to your needs.</p>
+        <br>
+        <br><br>
+        <br><br>
+        <form action="{% url 'payment_at_registration' %}" method="post">
+            {% csrf_token %}
+            <div class="tab text-center">
+                <p>Select one of the payment options.</p>
+                <br>
+                <br>
+
+                <div style="display: flex; flex-direction: row; justify-content: space-around;">
+
+                    <select class="inputrequired" name="account_type" oninput="this.className = ''">
+                        <option selected>Select Account Type</option>
+                        {% for price in prices %}
+                        <option value="{{price.token}}">{{price.descripion}})</option>
+                        {% endfor %}
+                        <option value="20">20+ Properties (Contact Us)</option>
+                    </select>
+                    <input name="user_id" type="hidden" value="{{ user_id }}">
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<div class="col-md-12 col-sm-12 text-center" hx-target="this" hx-swap="outerHTML">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <button type="submit" hx-post="{% url 'profile' %}"
+            style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 8px 20px; font-size: medium; color: white; background-color: #8f1bdc;">DD</button>
+    </form>
+    <br><br>
+
+</div>

@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br>
+<br>
+<br><br><br>
+<br>
+<br><br><br>
+
+<div class="pricing-card-area">
+    <div class="section-tittle text-center">
+        <h2>Choose Your Very Best Pricing Plan.</h2>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            {% for i in prices %}
+            {% if i.is_popular %}
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-card text-center mb-30"
+                    style="background-color: #8f1bdc; color: #ffff; box-shadow: -10px -10px 1px 2px #8f1bdc; overflow-x: hidden;">
+                    <h5
+                        style="margin-left: 70px; margin-top: -20px; margin-right: -50%; background-color: #ffff; color: #8f1bdc; font-size: smaller; font-weight: bolder;">
+                        Most
+                        Popular</h5>
+                    <div class="card-top mt-3">
+                        <span style="color: #ffff;">{{i.name}}</span>
+                        <h4 style="color: #ffff;">${{i.price_per_month}}<span
+                                style="font-size:xx-small; color: #ffff;">/property(s)</span></h4>
+                    </div>
+                    <div class="card-bottom" style="color: #ffff;">
+                        <ul>
+
+
+                            <li style="color: #ffff;">Properties: {{ i.number_of_properties }}</li>
+                            <li style="color: #ffff;">Quick Email support </li>
+                            <li  style="color: #ffff;" >24/7 On call support</li>
+
+                        </ul>
+                        {% if profiled %}
+                        <a href="{% url 'pro_user' %}" class="btn card-btn1"
+                            style="color: #8f1bdc; background-color: #ffff;">Upgrade</a>
+
+                        {% else %}
+                        <form action="{% url 'pro' %}" method="post">
+
+
+                            {% csrf_token %}
+
+                            <input type="hidden" name="account_type" value="{{i.token}}">
+
+
+                            <button type="submit" class="btn card-btn1"
+                                style="color: #8f1bdc; background-color: #ffff;">Get
+                                Started</button>
+                        </form>
+
+                        {% endif %}
+
+
+
+                    </div>
+                </div>
+            </div>
+            {% else %}
+
+
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-card text-center mb-30">
+                    <div class="card-top">
+                        {% if i.is_yearly %}
+                        <span>Yearly</span>
+                        {% else %}
+                        <span>Monthly</span>
+
+                        {% endif %}
+                        <h4>${{ i.price_per_month }} <span>/ property</span></h4>
+                    </div>
+                    <div class="card-bottom">
+                        <ul>
+                            {% if i.number_of_properties > 1000 %}
+                            <li>Properties Can Be Added: Unlimited</li>
+                            {% else %}
+                            <li>Properties Can Be Added: {{ i.number_of_properties }}</li>
+                            {% endif %}
+                   <li >Quick Email support </li>
+                            <li >24/7 On call support</li>
+                        </ul>
+                        {% if profiled %}
+                        <a href="{% url 'pro_user' %}" class="btn card-btn1">Upgrade</a>
+
+                        {% else %}
+                        <form action="{% url 'pro' %}" method="post">
+
+
+                            {% csrf_token %}
+
+                            <input type="hidden" name="account_type" value="{{i.token}}">
+
+                            <button type="submit" class="btn card-btn1">Get Started</button>
+                        </form>
+
+                        {% endif %}
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            {% endif %}
+            {% endfor %}
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-card text-center mb-30">
+                    <div class="card-top">
+                        <span>Monthly</span>
+                        <h4>$$.$$ <span>/property(s)</span></h4>
+                    </div>
+                    <div class="card-bottom">
+                        <ul>
+
+                            <li>Properties Can Be Added: 20+</li>
+
+                            <li>Contact us if you want to</li>
+                            <li> add more than 20 properties</li>
+                        </ul>
+
+                        <a href="{% url 'contact' %}" class="btn card-btn1">Contact</a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Pricing Card End -->
+<!-- Available App  Start-->
+<div class="mobile-apps">
+    <div class="container text-center">
+        <div class="row">
+
+            <h2 style="font-size: xx-large; 
+    color: white;">311Alert is avalible to be used on any device. Download Now</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+                <a href="#" class="app-btn1"><img src="{% static 'assets/img/shape/app_btn1.png' %}" alt=""></a>
+
+                <a href="#" class="app-btn2"><img src="{% static 'assets/img/shape/app_btn2.svg' %}" alt=""></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Available App End-->
+
+<!-- Say Something Start -->
+<div class="say-something-aera pt-90 pb-90 fix">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="offset-xl-1 offset-lg-1 col-xl-5 col-lg-5">
+                <div class="say-something-cap">
+                    <h2>Say Hello To The Collaboration Hub.</h2>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3">
+                <div class="say-btn">
+                    <a href="{% url 'contact' %}" class="btn radius-btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- shape -->
+    <div class="say-shape">
+        <img src="{% static 'assets/img/shape/say-shape-left.png' %}" alt=""
+            class="say-shape1 rotateme d-none d-xl-block">
+        <img src="{% static 'assets/img/shape/say-shape-right.pn' %}" alt="" class="say-shape2 d-none d-lg-block">
+    </div>
+</div>
+<!-- Say Something End -->
+
+{% endblock %}

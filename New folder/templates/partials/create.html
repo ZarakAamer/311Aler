@@ -1,0 +1,15 @@
+<div hx-target="this" hx-swap="outerHTML">
+
+    <div class="form-group text-center" style="margin: 10px;">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+
+            <hr>
+            <button type="submit" hx-post="{% url 'manageble_account' %}"
+                style="border: 2px solid #8f1bdc; border-radius: 5px; padding: 10px 20px; font-size: medium; color: white; background-color: #8f1bdc;">Submit</button>
+        </form>
+    </div>
+    <br><br>
+
+</div>

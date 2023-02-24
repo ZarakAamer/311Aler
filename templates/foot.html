@@ -1,0 +1,69 @@
+{% load static %}
+
+
+<style>
+    .the_logo {
+        margin-top: 10px;
+        width: 160px;
+        height: 65px;
+        padding-bottom: 4px;
+    }
+
+    @media (max-width: 990px) {
+        .the_logo {
+            margin-top: 5px;
+
+            width: 170px;
+            height: 70px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .the_logo {
+            margin-top: 0px;
+
+            width: 140px;
+            height: 60px;
+            padding-bottom: 2px;
+
+        }
+    }
+</style>
+
+<footer>
+    <!-- Footer Start-->
+    <div class="footer-padding">
+        <div class="container" style="padding-top: 30px;">
+
+
+            <div class="row">
+                <div class="col-md-12" style="padding-bottom: 40px;">
+                    <a href="{% url 'home' %}"><img class="the_logo" src="{% static 'assets/311.png' %}" alt="311alert">
+                    </a>
+                </div>
+
+                <br><br>
+                <div class="col-md-12">
+
+                    <ul class="row">
+                        <li><a style="color:black; margin: 8px;" href="{% url 'home' %}">Home</a></li>
+                        <li><a style="color:black; margin: 8px;" href="{% url 'price' %}">Pricing</a></li>
+                        <li><a style="color:black; margin: 8px;" href="{% url 'contact'  %}">Contact</a></li>
+                    </ul>
+
+                </div>
+                <br>
+                <br><br>
+                <div class="col-md-12">
+                    <p style="color: black;">We regularly send you alerts while actively monitoring your
+                        property(s).
+
+                    </p>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<br>
+<br>
+
+
+
+
+<div style="padding-top: 60px; height: 100%;" class="available-app-area mt-50">
+
+    <div class="container text-center">
+        <h4 style="text-align: center; font-weight: bold; margin-top: 0%; padding-top: 0%;" class="display-4">Your
+            Payment Was Successfull</h4>
+        <p>You can login and add your property now to get notified for</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'login' %}" class="btn  card-btn1">Login Now</a>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

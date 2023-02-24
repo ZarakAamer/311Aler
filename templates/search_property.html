@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<br><br>
+
+
+
+<div class="container text-center mt-3">
+    <br>
+    <br>
+    <br><br><br><br>
+    <h2 style="color: #2b044d">
+        Search Property From Here
+    </h2>
+    <p>Serach your property by house number and street name and you can find your bin number on the official website of
+        dob nyc</p>
+    <br><br>
+    <!-- Section Tittle -->
+
+    <style>
+        .first {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: row;
+            max-height: 900px;
+            min-height: 100px;
+            min-width: 100%;
+        }
+
+        .first .div1 {
+            padding: 10px;
+            width: 700px;
+        }
+
+
+        input {
+            padding: 8px;
+            width: 100%;
+        }
+
+        textarea {
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid grey;
+        }
+
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .first {
+                display: flex;
+                flex-direction: row;
+                min-width: 100%;
+
+            }
+
+            .first .div1 {
+                padding: 14px;
+                width: 500px;
+            }
+
+
+            input {
+                font-size: medium;
+                padding: 8px;
+                width: 100%;
+            }
+
+        }
+
+        @media (min-width: 300px) and (max-width: 767px) {
+            .first {
+                display: flex;
+                flex-direction: column;
+                min-width: 100%;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+            }
+
+            .first .div1 {
+                padding: 14px;
+                width: 300px;
+            }
+
+
+            input {
+                font-size: medium;
+                padding: 8px;
+                width: 100%;
+            }
+
+        }
+
+        select {
+
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid grey;
+            text-align: center;
+            font-size: medium;
+            padding: 8px;
+            width: 100%;
+        }
+    </style>
+
+
+
+    <div class="first">
+        <div class="div1">
+            <select class="form-select form-select-lg mb-3" id="brg" style="width: 100%;">
+                <option selected>Select a Borough</option>
+                <option value="1">Manhattan</option>
+                <option value="2">Bronx</option>
+                <option value="3">Brooklyn</option>
+                <option value="4">Queens</option>
+                <option value="5">Staten Island</option>
+
+            </select>
+
+        </div>
+
+        <div class="div1">
+            <input name="housenumber" value="" type="text" id="hnum" placeholder="House No.">
+        </div>
+
+        <div class="div1">
+            <input name="streetnumber" value="" type="text" id="snum" placeholder="Street Name.">
+        </div>
+
+        <div class="div1">
+            <a href="#" onclick="searchproperty()" id="seacher" class="batn">
+                <h1
+                    style="border-radius: 5px; padding: 10px; font-size: medium; color: white; background-color: #8f1bdc;">
+                    SEARCH</h1>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        function searchproperty() {
+            console.log("Ayeee Hyeee")
+            let snumber = document.getElementById("snum").value.replace(" ", "+");
+            let hnumber = document.getElementById("hnum").value;
+            let boro = document.getElementById("brg").value;
+            let link = document.getElementById("seacher");
+            console.log(snumber)
+
+            console.log(hnumber)
+            console.log(boro)
+            link.href = "https://a810-bisweb.nyc.gov/bisweb/PropertyProfileOverviewServlet?boro=" + boro + "&houseno=" + hnumber + "&street=" + snumber + "&go2=+GO+&requestid=0"
+        }
+    </script>
+
+
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+{% endblock %}

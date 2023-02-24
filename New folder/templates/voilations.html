@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center" style="color: #2b044d; min-width: 100%;">
+    <br><br><br>
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}" style="color: #8f1bdc;">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Voilations</li>
+        </ol>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br><br><br><br>
+    <h1 style="text-align:center;">Voilations </h1>
+    <br><br><br><br>
+
+
+    <div class="row" style=" height: max-content;">
+    </div>
+
+    <br>
+    <br><br>
+
+
+    <div class="row" style=" height: max-content;">
+
+
+        {% if voilations %}
+        <div class="table-responsive">
+            <table style=" color: #8f1bdc;" class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Voilations Number</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">File Date</th>
+                        <th scope="col">Dismissal Date</th>
+                        <th scope="col">Bage no</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for voil in voilations %}
+                    <tr>
+                        <td>{{ voil.voilation_number }}</td>
+                        <td>{{ voil.voilation_type }}</td>
+                        <td>{{ voil.voilation_filedate }}</td>
+                        <td>{{ voil.voilation_dismissaldate }}</td>
+                        <td>{{ voil.voilation_Bageno }}</td>
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
